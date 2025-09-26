@@ -143,15 +143,17 @@ The provided data has the following format:
    - You can ask the LLM to format its answer as `<answer>[letter]</answer>` where letter is A, B, C, D, etc, then use a regex like shown in `generate_answers_demo.ipynb` to extract the answer. Bear in mind that the LLM might not always follow the format, you may need to do prompt engineering.
    - You just need to include the answer letter in the jsonl responses file. Make sure that it corresponds to one of the original options.
 
-## 🎯 Best Practices
+## 🎯 Best Practices and ideas
 
 1. **Encourage test time compute**: Several studies have shown that LLMs can improve their performance with test time compute. You can encourage this by adding a prompt like "Think through the question step by step", or "First define each biological concept and then answer the question" etc...
 2. **Choosing the right model**:
     - You do not have to use vLLM for inference. You can use any system that you like. Feel free to query your favorite assistant to get a list of models that you can run on the available resources (8xL4 GPUs, 192Go VRAM).
     - Some models are already finetuned on adjacent domains, e.g. [MedGemma](https://huggingface.co/google/medgemma-27b-text-it)
     - You can also look into larger quantized models that are published on Hugging Face (e.g. https://huggingface.co/models?other=base_model:quantized:openai/gpt-oss-120b).
+
+3. **Prompt optimization**: Careful prompting both the system prompt and the user requests is the quey to having good performances. This is where you can inject expert knowledge and guide the model's reasoning. You can also try some of the promising prompt optimization framework, using the training set : [gepa](https://github.com/gepa-ai/gepa), [GAAPO](https://arxiv.org/abs/2504.07157) or [promptomatix](https://github.com/SalesforceAIResearch/promptomatix) are examples.
    
-3. **Post-training**: You can use the training set to try to fine-tune open-weights models, probably up to 32B with [LoRA](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora). Unfortunately, the resources will not be enough to do reinforcement learning.
+5. **Post-training**: You can use the training set to try to fine-tune open-weights models, probably up to 32B with [LoRA](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora). Unfortunately, the resources will not be enough to do reinforcement learning.
 
 
 Good luck with your submissions! 🧬🏆
