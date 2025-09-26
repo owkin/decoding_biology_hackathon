@@ -151,7 +151,7 @@ The provided data has the following format:
     - Some models are already finetuned on adjacent domains, e.g. [MedGemma](https://huggingface.co/google/medgemma-27b-text-it)
     - You can also look into larger quantized models that are published on Hugging Face (e.g. https://huggingface.co/models?other=base_model:quantized:openai/gpt-oss-120b).
 
-3. **Prompt optimization**: Careful prompting both the system prompt and the user requests is the quey to having good performances. This is where you can inject expert knowledge and guide the model's reasoning. You can also try some of the promising prompt optimization framework, using the training set : [gepa](https://github.com/gepa-ai/gepa), [GAAPO](https://arxiv.org/abs/2504.07157) or [promptomatix](https://github.com/SalesforceAIResearch/promptomatix) are examples.
+3. **Prompt optimization**: Careful prompting both the system prompt and the user requests is the key to having good performances. This is where you can inject expert knowledge and guide the model's reasoning. You can also try some of the promising prompt optimization framework, using the training set : [gepa](https://github.com/gepa-ai/gepa), [GAAPO](https://arxiv.org/abs/2504.07157) or [promptomatix](https://github.com/SalesforceAIResearch/promptomatix) are examples.
    
 5. **Post-training**: You can use the training set to try to fine-tune open-weights models, probably up to 32B with [LoRA](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora). Unfortunately, the resources will not be enough to do reinforcement learning.
 
