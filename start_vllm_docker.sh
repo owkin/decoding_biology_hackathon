@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the cache directory on the large EBS volume
-CACHE_DIR="/home/ec2-user/SageMaker/hf_cache"
+CACHE_DIR="/home/ec2-user/SageMaker/data/hf_cache"
 
 # Ensure the cache directory exists
 mkdir -p "$CACHE_DIR"
@@ -12,7 +12,7 @@ mkdir -p "$CACHE_DIR"
 docker run --runtime nvidia --gpus all \
     -v "$CACHE_DIR":/root/.cache/huggingface \
     --env "HUGGING_FACE_HUB_TOKEN=$HF_TOKEN" \
-    --env "HF_HOME=/home/ec2-user/SageMaker/.cache" \
+    --env "HF_HOME=/home/ec2-user/SageMaker/data/.cache" \
     -p 8000:8000 \
     --ipc=host \
     vllm/vllm-openai:latest \
