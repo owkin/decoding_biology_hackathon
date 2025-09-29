@@ -80,7 +80,7 @@ uv run python upload_answers.py --check-s3
 ```
 ### Viewing the Leaderboard
 
-The leaderboard available at https://d2tzswkhcugild.cloudfront.net/
+The leaderboard available at [https://d18bag07vdubnx.cloudfront.net/](https://d18bag07vdubnx.cloudfront.net/)
 
 The total score is the percentage of the test set that has a correctly formatted answer and is also correct.
 ![image.png](image.png)
