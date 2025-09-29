@@ -28,6 +28,16 @@ This folder contains all the tools and resources needed for participants to star
    ```
    This will start a local LLM endpoint for you and your team, that you can access from e.g. localhost:8000 (check the contents of `start_vllm_docker.sh`).
 
+4. **Edit the bucket name in `upload_answers.py`:**
+
+   See the line 24 in the file [upload_answers.py](upload_answers.py).
+   ```python
+   S3_BUCKET = "decoding-biology-hackathon-test-data"
+   ```
+   to be updated with the bucket found on the AWS profile.
+
+5. Optional : Create a [HF token](https://huggingface.co/docs/hub/en/security-tokens) for your account if you plan to use a private model or one with a required user agreement.
+
 ## 📁 Files Overview
 
 ### Core Notebooks

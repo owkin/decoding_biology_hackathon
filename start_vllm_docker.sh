@@ -8,7 +8,7 @@ mkdir -p "$CACHE_DIR"
 
 # Start vLLM Docker container with OpenAI-compatible server
 # Based on: https://docs.vllm.ai/en/stable/getting_started/quickstart.html#openai-compatible-server
-
+# The HF Token is only necessary if you are using a private model or one with a required user agreement
 docker run --runtime nvidia --gpus all \
     -v "$CACHE_DIR":/root/.cache/huggingface \
     --env "HUGGING_FACE_HUB_TOKEN=$HF_TOKEN" \
