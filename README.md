@@ -4,15 +4,13 @@ This folder contains all the tools and resources needed for participants to star
 
 ## 🚀 Quick Start
 
-1. **Download the train set ground truth:**
+1. **Train set ground truth and test set data:**
    
-   If the data is not already downloaded, you can find it on the bucket:
+   The data should already be present in your instance at 
    ```bash
-   # Look through bucket
-   aws s3 ls s3://decoding-biology-hackathon-test-data/data/
-   # Copy files
-   aws s3 sync s3://decoding-biology-hackathon-test-data/data/ .
+   /home/ec2-user/SageMaker/data/
    ```
+
 2. **Install dependencies:**
 
    Create a virtual environment and install all dependencies (via `uv`):
@@ -80,7 +78,7 @@ uv run python upload_answers.py --check-s3
 ```
 ### Viewing the Leaderboard
 
-The leaderboard available at https://d2tzswkhcugild.cloudfront.net/
+The leaderboard available at [https://d18bag07vdubnx.cloudfront.net/](https://d18bag07vdubnx.cloudfront.net/)
 
 The total score is the percentage of the test set that has a correctly formatted answer and is also correct.
 ![image.png](image.png)
