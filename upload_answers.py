@@ -79,8 +79,8 @@ def validate_jsonl_file(file_path: Path) -> Tuple[bool, List[str]]:
             answer_letter = data['answer_letter']
             if not isinstance(answer_letter, str):
                 errors.append(f"Line {i}: answer_letter must be a string")
-            elif not re.match(r'[ABCDE]', answer_letter):
-                errors.append(f"Line {i}: answer_letter must be in format [A|B|C|D|E], got: {answer_letter}")
+            elif not re.match(r'[ABCDEF]', answer_letter):
+                errors.append(f"Line {i}: answer_letter must be in format [A|B|C|D|E|F], got: {answer_letter}")
 
         seen_questions.add(data['question']+data['options'])
     
