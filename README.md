@@ -4,15 +4,13 @@ This folder contains all the tools and resources needed for participants to star
 
 ## 🚀 Quick Start
 
-1. **Download the train set ground truth:**
+1. **Train set ground truth and test set data:**
    
-   If the data is not already downloaded, you can find it on the bucket:
+   The data should already be present in your instance at 
    ```bash
-   # Look through bucket
-   aws s3 ls s3://decoding-biology-hackathon-test-data/data/
-   # Copy files
-   aws s3 sync s3://decoding-biology-hackathon-test-data/data/ .
+   /home/ec2-user/SageMaker/data/
    ```
+
 2. **Install dependencies:**
 
    Create a virtual environment and install all dependencies (via `uv`):
