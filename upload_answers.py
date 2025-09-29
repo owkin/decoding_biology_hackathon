@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # S3 Configuration
-S3_BUCKET = "decoding-biology-hackathon-test-data"
+S3_BUCKET = "709747128509-hackathon-results"
 S3_PREFIX = "submissions/"
 
 def validate_jsonl_file(file_path: Path) -> Tuple[bool, List[str]]:
