@@ -65,16 +65,13 @@ In other words, we will only consider full submissions with the raw_responses fo
 You can use the following script to upload your answers to the **test set**:
 ```bash
 # Validate only
-uv run python upload_answers.py test_answers.jsonl --team-name "team1" --validate-only
+uv run python upload_answers.py test_answers.jsonl --team-name "Team1" --validate-only
 
 # Upload 
-uv run python upload_answers.py test_answers.jsonl --team-name "team1"
+uv run python upload_answers.py test_answers.jsonl --team-name "Team1"
 
 # Upload with team name and tag (e.g., model name)
-uv run python upload_answers.py test_answers.jsonl --team-name "team1" --tag "qwen3_8b_no_tooling"
-
-# Check S3 connection
-uv run python upload_answers.py --check-s3
+uv run python upload_answers.py test_answers.jsonl --team-name "Team1" --tag "qwen3_8b_no_tooling"
 ```
 ### Viewing the Leaderboard
 

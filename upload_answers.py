@@ -10,7 +10,7 @@ import logging
 import re
 import sys
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Tuple
 import boto3
 from botocore.exceptions import ClientError, NoCredentialsError
 import argparse
@@ -107,6 +107,9 @@ def upload_to_s3(file_path: Path, team_name: str = None, tag: str = None) -> boo
             logger.error("Team name is required for submission")
             return False
         
+        # Automatically uppercase the first letter of the team name
+        team_name = team_name[0].upper() + team_name[1:] if team_name else team_name
+        
         # Generate S3 key with team-based path
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         safe_team_name = re.sub(r'[^a-zA-Z0-9_-]', '_', team_name)
@@ -149,52 +152,16 @@ def upload_to_s3(file_path: Path, team_name: str = None, tag: str = None) -> boo
         logger.error(f"Unexpected error: {e}")
         return False
 
-def check_s3_connection() -> bool:
-    """
-    Check if S3 connection is working.
-    
-    Returns:
-        True if connection is successful, False otherwise
-    """
-    try:
-        s3_client = boto3.client('s3')
-        s3_client.head_bucket(Bucket=S3_BUCKET)
-        logger.info(f"Successfully connected to S3 bucket: {S3_BUCKET}")
-        return True
-    except ClientError as e:
-        error_code = e.response['Error']['Code']
-        if error_code == '404':
-            logger.error(f"S3 bucket not found: {S3_BUCKET}")
-        else:
-            logger.error(f"S3 error: {e}")
-        return False
-    except NoCredentialsError:
-        logger.error("AWS credentials not found. Please configure your AWS credentials.")
-        return False
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        return False
-
 def main():
     parser = argparse.ArgumentParser(description='Upload hackathon answers to S3')
     parser.add_argument('file', help='Path to the JSONL file to upload')
     parser.add_argument('--team-name', required=True, help='Team name for the submission (required)')
     parser.add_argument('--tag', help='Optional tag to distinguish different submissions (e.g., model name)')
     parser.add_argument('--validate-only', action='store_true', help='Only validate the file, do not upload')
-    parser.add_argument('--check-s3', action='store_true', help='Check S3 connection and exit')
     
     args = parser.parse_args()
     
     file_path = Path(args.file)
-    
-    # Check S3 connection if requested
-    if args.check_s3:
-        if check_s3_connection():
-            print("✓ S3 connection successful")
-            sys.exit(0)
-        else:
-            print("✗ S3 connection failed")
-            sys.exit(1)
     
     # Validate file
     logger.info(f"Validating file: {file_path}")
@@ -211,11 +178,6 @@ def main():
     if args.validate_only:
         print("✓ File is valid and ready for upload")
         sys.exit(0)
-    
-    # Check S3 connection
-    if not check_s3_connection():
-        logger.error("Cannot upload: S3 connection failed")
-        sys.exit(1)
     
     # Upload file
     success = upload_to_s3(file_path, args.team_name, args.tag)
